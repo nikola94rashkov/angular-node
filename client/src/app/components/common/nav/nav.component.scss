@@ -1,0 +1,20 @@
+.nav {
+  color: var(--mat-sys-inverse-surface);
+  * {
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    margin: -10px;
+  }
+
+  li {
+    padding: 10px;
+  }
+
+  a {
+    display: inline-block;
+  }
+}

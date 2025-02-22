@@ -1,1 +1,31 @@
-<p>nav works!</p>
+<nav class="nav">
+  <ul>
+    @if(isUserLoggedIn) {
+      <li>
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon>
+            account_circle
+          </mat-icon>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/logout" routerLinkActive="active">
+          <mat-icon>
+            logout
+          </mat-icon>
+        </a>
+      </li>
+    } @else {
+      <li>
+        <a routerLink="/login" routerLinkActive="active">
+          <mat-icon>login</mat-icon>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/register" routerLinkActive="active">
+          <mat-icon>person_add</mat-icon>
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

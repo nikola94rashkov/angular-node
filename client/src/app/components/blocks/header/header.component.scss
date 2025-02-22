@@ -1,0 +1,21 @@
+.header {
+  padding: 20px 0;
+  background-color: var(--mat-sys-background);
+  box-shadow: var(--mat-sys-level1);
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__logo {
+    line-height: 0;
+  }
+
+  .header__nav {}
+
+  .header__trigger {
+    display: none;
+  }
+}

@@ -3,25 +3,22 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('@pages/home/home.module').then((module) => module.HomeModule),
-  },
-  {
-    path: 'article',
-    loadChildren: () =>
-      import('@pages/article/article.module').then((module) => module.ArticleModule),
+    loadComponent: () =>
+      import('@pages/home/home.component').then((module) => module.HomeComponent),
   },
   {
     path: 'dashboard',
-    loadChildren: () =>
-      import('@pages/dashboard/dashboard.module').then((module) => module.DashboardModule),
+    loadComponent: () =>
+      import('@pages/dashboard/dashboard.component').then((module) => module.DashboardComponent),
   },
   {
     path: 'login',
-    loadChildren: () => import('@pages/login/login.module').then((module) => module.LoginModule),
+    loadComponent: () =>
+      import('@pages/login/login.component').then((module) => module.LoginComponent),
   },
   {
     path: 'register',
-    loadChildren: () =>
-      import('@pages/register/register.module').then((module) => module.RegisterModule),
+    loadComponent: () =>
+      import('@pages/register/register.component').then((module) => module.RegisterComponent),
   },
 ];
