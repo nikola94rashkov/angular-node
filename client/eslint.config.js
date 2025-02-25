@@ -40,9 +40,14 @@ module.exports = tseslint.config(
           groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index'],
           pathGroups: [
             {
-              pattern: '@angular/**',
+              pattern: '@angular/core',
               group: 'external',
               position: 'before',
+            },
+            {
+              pattern: '@angular/**',
+              group: 'external',
+              position: 'after',
             },
             {
               pattern: '@models/**',
@@ -77,6 +82,7 @@ module.exports = tseslint.config(
           },
         },
       ],
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     },
   },
   {

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss',
 })
-export class NavComponent {
-  isUserLoggedIn = true;
+export class NavComponent implements OnInit {
+  isUserLoggedIn = false;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    console.log('ngOnInit nav');
+  }
 }

@@ -4,10 +4,22 @@
   padding: 0;
 }
 
+// variables
+
 :root {
   --shell-width: 1200px;
   --shell-spacing: 0 20px;
+  --section-spacing: 30px 0;
 }
+
+// Main
+
+.main {
+  min-height: 100dvh;
+}
+
+
+// Base
 
 ul a {
   text-decoration: none;
@@ -17,5 +29,12 @@ button {
  all: unset;
 }
 
+.section {
+  padding: var(--section-spacing);
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
 
 
