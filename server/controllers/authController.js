@@ -1,11 +1,12 @@
 const { getDB } = require('../config/db');
 const bcrypt = require('bcryptjs');
 
-// Register a new user
 const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, role } = req.body;
+    console.log(`registerUser ${username} ${email} ${password} ${role}`);
 
     try {
+        console.log('try register');
         const db = getDB();
         const usersCollection = db.collection('users');
 
@@ -20,8 +21,10 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Insert new user
-        const newUser = { username, email, password: hashedPassword };
+        const newUser = { username, email, password: hashedPassword, role: role };
         await usersCollection.insertOne(newUser);
+
+        console.log('newUser', newUser)
 
         res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (err) {
@@ -33,18 +36,27 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
+   console.log(`loginUser ${email} ${password}`);
+
     try {
+        console.log('try login');
         const db = getDB();
+
         const usersCollection = db.collection('users');
+        console.log('usersCollection', usersCollection)
 
         // Find user by email
         const user = await usersCollection.findOne({ email });
+
+        console.log('user email', user)
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
         // Compare passwords
         const isMatch = await bcrypt.compare(password, user.password);
+
+        console.log('isMatch', isMatch)
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
@@ -59,6 +71,8 @@ const loginUser = async (req, res) => {
 
 // Logout user
 const logoutUser = async (req, res) => {
+    console.log('logoutUser')
+
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).json({ message: 'Logout failed' });
