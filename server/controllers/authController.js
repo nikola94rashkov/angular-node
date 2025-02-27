@@ -1,9 +1,9 @@
 const { getDB } = require('../config/db');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-    const { username, email, password, role } = req.body;
-    console.log(`registerUser ${username} ${email} ${password} ${role}`);
+    const { email, password } = req.body;
 
     try {
         console.log('try register');
@@ -12,7 +12,9 @@ const registerUser = async (req, res) => {
 
         // Check if user already exists
         const userExists = await usersCollection.findOne({ email });
+
         if (userExists) {
+            console.log('user already exists', userExists);
             return res.status(400).json({ message: 'User already exists' });
         }
 
@@ -21,18 +23,18 @@ const registerUser = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Insert new user
-        const newUser = { username, email, password: hashedPassword, role: role };
+        const newUser = { ...req.body, password: hashedPassword};
         await usersCollection.insertOne(newUser);
 
         console.log('newUser', newUser)
 
         res.status(201).json({ message: 'User registered successfully', user: newUser });
     } catch (err) {
+        console.error('err', err)
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
 
-// Login user
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
@@ -45,7 +47,6 @@ const loginUser = async (req, res) => {
         const usersCollection = db.collection('users');
         console.log('usersCollection', usersCollection)
 
-        // Find user by email
         const user = await usersCollection.findOne({ email });
 
         console.log('user email', user)
@@ -53,7 +54,6 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // Compare passwords
         const isMatch = await bcrypt.compare(password, user.password);
 
         console.log('isMatch', isMatch)
@@ -61,15 +61,13 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // Save user ID in session
         req.session.userId = user._id;
-        res.status(200).json({ message: 'Login successful', user });
+        res.status(200).json({ message: 'Login successful', user: { _id: user._id, role: user.role } });
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
 
-// Logout user
 const logoutUser = async (req, res) => {
     console.log('logoutUser')
 

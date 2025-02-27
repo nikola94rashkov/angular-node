@@ -49,6 +49,14 @@
       }
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+    @if(message) {
+      <mat-hint>
+        {{message}}
+      </mat-hint>
+    }
+
+    <div class="form__actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+    </div>
   </form>
 </section>

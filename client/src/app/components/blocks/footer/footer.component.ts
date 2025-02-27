@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ShellComponent} from '@components/common/shell/shell.component';
+import { ShellComponent } from '@components/hoc/shell/shell.component';
 
 @Component({
   selector: 'app-footer',

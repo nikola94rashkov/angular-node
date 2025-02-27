@@ -7,4 +7,13 @@ export type User = {
   date: Date;
 };
 
+export type UserResponse = {
+  user: UserCookie;
+  message: string;
+};
+
+export type UserCookie = Pick<User, 'role'> & {
+  _id: string;
+};
+
 export type UserCredentials = Pick<User, 'email' | 'password'>;
