@@ -1,6 +1,6 @@
 <nav class="nav">
   <ul>
-    @if(isUserLoggedIn) {
+    @if(user) {
       <li>
         <a routerLink="/dashboard" routerLinkActive="active">
           <mat-icon>
@@ -9,7 +9,7 @@
         </a>
       </li>
       <li>
-        <a routerLink="/logout" routerLinkActive="active">
+        <a href="#" (click)="logout($event)">
           <mat-icon>
             logout
           </mat-icon>

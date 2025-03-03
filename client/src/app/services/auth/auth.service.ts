@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserCookie, UserCredentials, UserResponse } from '@models/user.model';
+import { User, UserCredentials, UserResponse } from '@models/user.model';
 import { LocalService } from '@services/local/local.service';
 import { UserStateService } from '@services/user-state/user-state-service.service';
 import { tap } from 'rxjs';
@@ -31,6 +31,7 @@ export class AuthService {
         const { user } = res;
 
         this.localService.saveData('user', JSON.stringify(user));
+        this.userStateService.setUserState(user);
       }),
     );
   }
@@ -42,5 +43,16 @@ export class AuthService {
         this.userStateService.clearUserState();
       }),
     );
+  }
+
+  autoLogin() {
+    const userData = this.localService.getData('user');
+
+    console.log(userData);
+
+    if (userData) {
+      const user = JSON.parse(userData);
+      this.userStateService.setUserState(user);
+    }
   }
 }
