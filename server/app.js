@@ -2,7 +2,9 @@ const express = require('express');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const MongoStore = require('connect-mongo');
 const { connectDB } = require('./config/db');
+
 
 dotenv.config();
 connectDB();
@@ -17,10 +19,10 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
         cookie: {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-            maxAge: 1000 * 60 * 60 * 24 * 14, // 14 days
+            maxAge: 1000 * 60 * 60 * 24 * 14,
         },
     })
 );
