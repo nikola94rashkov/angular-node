@@ -9,6 +9,8 @@ const createPost = async (req, res) => {
     }
 
     try {
+        console.log('Creating post with data:', { title, content, image, author: userId });
+
         const newPost = new Post({
             title,
             content,
@@ -17,8 +19,17 @@ const createPost = async (req, res) => {
         });
 
         const savedPost = await newPost.save();
+
+        console.log('Post created successfully:', savedPost);
+
         res.status(201).json({ message: 'Post created successfully', post: savedPost });
     } catch (err) {
+        console.error('Error creating post:', err);
+
+        if (err.name === 'ValidationError') {
+            return res.status(400).json({ message: 'Validation error', error: err.message });
+        }
+
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
