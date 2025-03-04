@@ -15,6 +15,20 @@ export const routes: Routes = [
       import('@pages/dashboard/dashboard.component').then((module) => module.DashboardComponent),
   },
   {
+    path: 'dashboard/createPost',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('@pages/create-post/create-post.component').then(
+        (module) => module.CreatePostComponent,
+      ),
+  },
+  {
+    path: 'dashboard/editPost/:postId',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('@pages/edit-post/edit-post.component').then((module) => module.EditPostComponent),
+  },
+  {
     path: 'login',
     canActivate: [authGuard],
     loadComponent: () =>

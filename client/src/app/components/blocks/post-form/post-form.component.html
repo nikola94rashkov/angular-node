@@ -1,0 +1,30 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="post-form">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Add image url</mat-label>
+    <input matInput formControlName="image">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>title</mat-label>
+    <input matInput formControlName="title" required>
+    @if(postForm.get('title')?.hasError('required')){
+      <mat-error>
+        title is required
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Content</mat-label>
+    <input matInput formControlName="content" required>
+    @if(postForm.get('content')?.hasError('required')) {
+      <mat-error>
+        content is required
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <div class="form__actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="postForm.invalid">{{this.data ? 'Edit' : 'Create'}}</button>
+  </div>
+</form>

@@ -19,14 +19,14 @@ export const authGuard: CanActivateFn = (
 
   const protectedRoutesForLoggedIn = ['/login', '/register'];
 
-  const protectedRoutesForNonLoggedIn = ['/dashboard'];
+  const dashboardBasePath = '/dashboard';
 
   if (isLoggedIn && protectedRoutesForLoggedIn.includes(state.url)) {
-    router.navigate(['/dashboard']);
+    router.navigate([dashboardBasePath]);
     return false;
   }
 
-  if (!isLoggedIn && protectedRoutesForNonLoggedIn.includes(state.url)) {
+  if (!isLoggedIn && state.url.startsWith(dashboardBasePath)) {
     router.navigate(['/login']);
     return false;
   }

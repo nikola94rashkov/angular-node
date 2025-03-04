@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -38,15 +37,15 @@ export class LoginFormComponent {
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      email: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
 
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard');
         this.loginForm.reset();
       },
       error: ({ error }) => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { LogoComponent } from '@components/common/logo/logo.component';
-import { NavComponent } from '@components/common/nav/nav.component';
+import { LogoComponent } from '@components/blocks/logo/logo.component';
+import { NavComponent } from '@components/blocks/nav/nav.component';
 import { ShellComponent } from '@components/hoc/shell/shell.component';
 
 @Component({

@@ -1,5 +1,4 @@
-<section class="section">
-  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>First Name</mat-label>
       <input matInput formControlName="firstName" required>
@@ -59,4 +58,3 @@
       <button mat-raised-button color="primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
     </div>
   </form>
-</section>
