@@ -18,26 +18,32 @@ export class AuthService {
   ) {}
 
   createUser(userData: User) {
-    return this.http.post<UserResponse>(`${this.apiUrl}/register`, {
-      ...userData,
-      role: 0,
-      registerDate: new Date(),
-    });
-  }
-
-  login(userCredentials: UserCredentials) {
-    return this.http.post<UserResponse>(`${this.apiUrl}/login`, userCredentials).pipe(
-      tap((res) => {
-        const { user } = res;
-
-        this.localService.saveData('user', JSON.stringify(user));
-        this.userStateService.setUserState(user);
-      }),
+    return this.http.post<UserResponse>(
+      `${this.apiUrl}/register`,
+      {
+        ...userData,
+        role: 0,
+        registerDate: new Date(),
+      },
+      { withCredentials: true },
     );
   }
 
+  login(userCredentials: UserCredentials) {
+    return this.http
+      .post<UserResponse>(`${this.apiUrl}/login`, userCredentials, { withCredentials: true })
+      .pipe(
+        tap((res) => {
+          const { user } = res;
+
+          this.localService.saveData('user', JSON.stringify(user));
+          this.userStateService.setUserState(user);
+        }),
+      );
+  }
+
   logout() {
-    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+    return this.http.post(`${this.apiUrl}/logout`, {}, { withCredentials: true }).pipe(
       tap(() => {
         this.localService.removeData('user');
         this.userStateService.clearUserState();
@@ -48,10 +54,9 @@ export class AuthService {
   autoLogin() {
     const userData = this.localService.getData('user');
 
-    console.log(userData);
-
     if (userData) {
       const user = JSON.parse(userData);
+
       this.userStateService.setUserState(user);
     }
   }

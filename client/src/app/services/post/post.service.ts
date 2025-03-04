@@ -12,26 +12,30 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   createPost(post: PostExtended): Observable<PostExtended> {
-    return this.http.post<PostExtended>(this.baseUrl, post);
+    return this.http.post<PostExtended>(this.baseUrl, post, { withCredentials: true });
   }
 
   updatePost(id: string, post: PostExtended): Observable<PostExtended> {
-    return this.http.put<PostExtended>(`${this.baseUrl}/${id}`, post);
+    return this.http.put<PostExtended>(`${this.baseUrl}/${id}`, post, { withCredentials: true });
   }
 
   deletePost(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`);
+    return this.http.delete(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 
   getPostById(id: string): Observable<PostExtended> {
-    return this.http.get<PostExtended>(`${this.baseUrl}/${id}`);
+    return this.http.get<PostExtended>(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 
   getAllPosts(page = 1, limit = 10): Observable<PostsList> {
-    return this.http.get<PostsList>(`${this.baseUrl}?page=${page}&limit=${limit}`);
+    return this.http.get<PostsList>(`${this.baseUrl}?page=${page}&limit=${limit}`, {
+      withCredentials: true,
+    });
   }
 
   getPostsByUserId(userId: string, page = 1, limit = 10): Observable<PostsList> {
-    return this.http.get<PostsList>(`${this.baseUrl}/user/${userId}?page=${page}&limit=${limit}`);
+    return this.http.get<PostsList>(`${this.baseUrl}/user/${userId}?page=${page}&limit=${limit}`, {
+      withCredentials: true,
+    });
   }
 }

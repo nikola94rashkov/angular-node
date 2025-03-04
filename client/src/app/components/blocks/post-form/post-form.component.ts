@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Post } from '@models/post.model';
+import { PostService } from '@services/post/post.service';
 
 @Component({
   selector: 'app-post-form',
@@ -15,7 +16,10 @@ export class PostFormComponent implements OnInit {
   @Input() data: Post | undefined;
   postForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private postService: PostService,
+  ) {
     this.postForm = this.formBuilder.group({
       image: [''],
       title: ['', Validators.required],
@@ -31,8 +35,9 @@ export class PostFormComponent implements OnInit {
 
   onSubmit() {
     if (this.postForm.valid) {
-      const formValue = this.postForm.value;
-      console.log('Form submitted:', formValue);
+      this.postService.createPost(this.postForm.value).subscribe((post) => {
+        console.log(post);
+      });
     } else {
       console.log('Form is invalid');
     }
