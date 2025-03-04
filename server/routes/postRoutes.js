@@ -1,16 +1,23 @@
 const express = require('express');
-const { registerUser, loginUser, logoutUser } = require('../controllers/authController');
+const {
+    createPost,
+    updatePost,
+    deletePost,
+    getPostById,
+    getAllPosts,
+    getPostsByUserId
+} = require('../controllers/postController');
 const { isAuthenticated } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.post('/logout', logoutUser);
+router.post('/', isAuthenticated, createPost);
+router.put('/:id', isAuthenticated, updatePost);
+router.delete('/:id', isAuthenticated, deletePost);
 
-// Protected route example
-router.get('/profile', isAuthenticated, (req, res) => {
-    res.json({ message: 'Profile accessed', user: req.user });
-});
+router.get('/:id', getPostById);
+router.get('/', getAllPosts);
+
+router.get('/user/:userId', getPostsByUserId);
 
 module.exports = router;

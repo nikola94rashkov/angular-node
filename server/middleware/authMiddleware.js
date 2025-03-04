@@ -10,6 +10,7 @@ const isAuthenticated = async (req, res, next) => {
         const usersCollection = db.collection('users');
 
         const user = await usersCollection.findOne({ _id: req.session.userId });
+
         if (!user) {
             return res.status(401).json({ message: 'Not authenticated' });
         }

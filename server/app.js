@@ -9,11 +9,9 @@ connectDB();
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Session configuration
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
@@ -34,6 +32,7 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/posts', require('./routes/postRoutes'));
 
 app.get('*', (req, res) => {
     res.send('This is a wildcard route');
