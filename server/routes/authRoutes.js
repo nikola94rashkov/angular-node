@@ -8,9 +8,4 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/logout', logoutUser);
 
-// Protected route example
-router.get('/profile', isAuthenticated, (req, res) => {
-    res.json({ message: 'Profile accessed', user: req.user });
-});
-
 module.exports = router;

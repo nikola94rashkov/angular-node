@@ -5,7 +5,6 @@ const cors = require('cors');
 const MongoStore = require('connect-mongo');
 const { connectDB } = require('./config/db');
 
-
 dotenv.config();
 connectDB();
 
@@ -15,6 +14,7 @@ app.use(cors({
     origin: `http://localhost:4200`,
     credentials: true,
 }));
+
 app.use(express.json());
 
 app.use(
@@ -30,12 +30,6 @@ app.use(
     })
 );
 
-
-app.get('/', (req, res) => {
-    res.send('Hello, this is the backend server!');
-});
-
-// Routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
 
