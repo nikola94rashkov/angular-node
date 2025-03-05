@@ -1,27 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { PostListComponent } from '@components/blocks/posts/post-list/post-list.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
 import { PostExtended } from '@models/post.model';
+import { Optional } from '@models/Util.model';
 import { PostService } from '@services/post/post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [SectionComponent, PostListComponent, MatPaginator, MatDivider],
+  standalone: true,
+  imports: [SectionComponent, PostListComponent, MatPaginator, MatDivider, MatProgressSpinner],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   posts: PostExtended[] = [];
   length = 0;
-  pageSizeOptions = [5, 10];
+  pageSizeOptions = [10, 5];
   pageIndex = 1;
-  previousPageIndex: number | undefined;
-  pageSize = 5;
+  previousPageIndex: Optional<number>;
+  pageSize = 10;
   totalPages = 0;
 
+  private subscription: Optional<Subscription>;
+
   constructor(private postService: PostService) {}
+
+  ngOnInit() {
+    this.getPostData(this.pageIndex, this.pageSize);
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
   onPageChange(event: PageEvent) {
     const { pageIndex, previousPageIndex, pageSize } = event;
@@ -30,14 +46,11 @@ export class HomeComponent implements OnInit {
     this.pageIndex = pageIndex;
 
     this.getPostData(pageIndex, pageSize);
-  }
-
-  ngOnInit() {
-    this.getPostData(this.pageIndex, this.pageSize);
+    console.log('length <= pageSize', this.length <= this.pageSize);
   }
 
   getPostData(page: number, limit: number) {
-    this.postService.getAllPosts(page, limit).subscribe({
+    this.subscription = this.postService.getAllPosts(page, limit).subscribe({
       next: (result) => {
         this.length = result.totalPosts;
         this.totalPages = result.totalPages;
@@ -45,7 +58,7 @@ export class HomeComponent implements OnInit {
         this.pageIndex = result.currentPage;
       },
       error: (error) => {
-        console.error(error);
+        console.error('Error fetching posts:', error);
       },
     });
   }

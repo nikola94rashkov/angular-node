@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostExtended, PostsList } from '@models/post.model';
+import { PostCreated, PostExtended, PostsList } from '@models/post.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  createPost(post: PostExtended): Observable<PostExtended> {
-    return this.http.post<PostExtended>(this.baseUrl, post, { withCredentials: true });
+  createPost(post: PostExtended): Observable<PostCreated> {
+    return this.http.post<PostCreated>(this.baseUrl, post, { withCredentials: true });
   }
 
   updatePost(id: string, post: PostExtended): Observable<PostExtended> {

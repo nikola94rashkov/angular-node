@@ -29,6 +29,11 @@ export const routes: Routes = [
       import('@pages/edit-post/edit-post.component').then((module) => module.EditPostComponent),
   },
   {
+    path: 'post/:postId',
+    loadComponent: () =>
+      import('@pages/articles/articles.component').then((module) => module.ArticlesComponent),
+  },
+  {
     path: 'login',
     canActivate: [authGuard],
     loadComponent: () =>

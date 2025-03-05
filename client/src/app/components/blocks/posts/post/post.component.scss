@@ -1,0 +1,43 @@
+.article {
+  position: relative;
+  border-radius: 0 0 10px 10px;
+
+  & > a {
+    transition: box-shadow .3s;
+    box-shadow: 0 0 11px rgba(33,33,33,.1);
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    border-radius: inherit;
+
+    &:hover {
+      box-shadow: 0 0 11px rgba(33,33,33,.4);
+    }
+  }
+
+  p + p {
+    margin-top: 5px;
+  }
+
+  .article__image {
+    padding-bottom: 80%;
+  }
+
+  .article__meta {
+    padding: 10px 15px 5px;
+  }
+  .article__content {
+    padding: 10px 15px;
+  }
+
+  &--single {
+    .article__image {
+      padding-bottom: 40%;
+    }
+  }
+}

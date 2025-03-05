@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Post } from '@models/post.model';
-import { PostService } from '@services/post/post.service';
+import { Optional } from '@models/Util.model';
 
 @Component({
   selector: 'app-post-form',
@@ -13,15 +13,15 @@ import { PostService } from '@services/post/post.service';
   styleUrl: './post-form.component.scss',
 })
 export class PostFormComponent implements OnInit {
-  @Input() data: Post | undefined;
-  postForm: FormGroup;
+  @Input() data: Optional<Post>;
+  @Output() formSubmit = new EventEmitter<Post>();
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private postService: PostService,
-  ) {
+  postForm: FormGroup;
+  message: string | null = null;
+
+  constructor(private formBuilder: FormBuilder) {
     this.postForm = this.formBuilder.group({
-      image: [''],
+      image: ['', Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
     });
@@ -35,9 +35,7 @@ export class PostFormComponent implements OnInit {
 
   onSubmit() {
     if (this.postForm.valid) {
-      this.postService.createPost(this.postForm.value).subscribe((post) => {
-        console.log(post);
-      });
+      this.formSubmit.emit(this.postForm.value);
     } else {
       console.log('Form is invalid');
     }

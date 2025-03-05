@@ -23,3 +23,10 @@ export type PostsList = {
   totalPages: number;
   currentPage: number;
 };
+
+export type PostCreated = {
+  message: string;
+  post: PostExtended;
+};
+
+export type PostType = 'grid' | 'post';

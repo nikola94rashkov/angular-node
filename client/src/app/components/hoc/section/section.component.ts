@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ShellComponent } from '@components/hoc/shell/shell.component';
+import { Optional } from '@models/Util.model';
 
 @Component({
   selector: 'app-section',
@@ -8,5 +9,5 @@ import { ShellComponent } from '@components/hoc/shell/shell.component';
   styleUrl: './section.component.scss',
 })
 export class SectionComponent {
-  @Input() title: string | undefined;
+  @Input() title: Optional<string>;
 }

@@ -1,8 +1,16 @@
 <app-section [title]="'Posts'">
-  <app-post-list [posts]="[]"/>
+  @defer (on viewport) {
+    <app-post-list [posts]="posts"/>
 
-    <mat-divider class="spacing-top-20"/>
+    @if (length > pageSize) {
+      <mat-divider class="spacing-top-20"/>
 
-    <mat-paginator [length]="length" (page)="onPageChange($event)"  [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
-    </mat-paginator>
+      <mat-paginator [length]="length" (page)="onPageChange($event)"  [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+      </mat-paginator>
+    }
+  } @placeholder {
+    <p>Loading posts...</p>
+  } @loading {
+    <mat-spinner/>
+  }
 </app-section>
