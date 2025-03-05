@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PostFormComponent } from '@components/blocks/post-form/post-form.component';
+import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
 
 @Component({

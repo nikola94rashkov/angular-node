@@ -7,6 +7,10 @@ export type User = {
   date: Date;
 };
 
+export type UserDocument = Omit<User, 'role' | 'date' | 'password'> & {
+  _id: string;
+};
+
 export type UserResponse = {
   user: UserCookie;
   message: string;

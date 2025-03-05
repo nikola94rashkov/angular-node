@@ -1,0 +1,13 @@
+.posts {
+  .posts__items {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -10px;
+  }
+
+  .posts__item {
+    width: 25%;
+    padding: 10px;
+    min-height: 8rem;
+  }
+}

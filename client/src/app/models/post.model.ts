@@ -1,3 +1,5 @@
+import { UserDocument } from '@models/user.model';
+
 export type Post = {
   id?: number;
   image: string;
@@ -10,7 +12,7 @@ export type PostExtended = {
   title: string;
   content: string;
   image?: string;
-  author?: string;
+  author?: UserDocument;
   createdAt?: Date;
   updatedAt?: Date;
 };
