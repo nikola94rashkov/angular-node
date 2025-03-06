@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require('path');
 const MongoStore = require('connect-mongo');
 const { connectDB } = require('./config/db');
 
@@ -32,6 +33,7 @@ app.use(
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/posts', require('./routes/postRoutes'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.get('*', (req, res) => {
     res.send('This is a wildcard route');

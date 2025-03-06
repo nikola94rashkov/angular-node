@@ -1,7 +1,8 @@
 const Post = require('../models/Post');
+const upload = require('../middleware/uploadMiddleware');
 
 const createPost = async (req, res) => {
-    const { title, content, image } = req.body;
+    const { title, content } = req.body;
     const userId = req.session.userId;
 
     if (!userId) {
@@ -9,28 +10,38 @@ const createPost = async (req, res) => {
     }
 
     try {
+        if (!req.file) {
+            return res.status(400).json({ message: 'Image file is required' });
+        }
+
+        const imageUrl = `${req.protocol}://${req.get('host')}/${req.file.path.replace(/\\/g, '/')}`;
+
         const newPost = new Post({
             title,
             content,
-            image,
+            image: req.file.path,
             author: userId,
         });
 
         const savedPost = await newPost.save();
-
-        res.status(201).json({ message: 'Post created successfully', post: savedPost });
+        res.status(201).json({
+            message: 'Post created successfully',
+            post: {
+                ...savedPost.toObject(),
+                image: imageUrl,
+            }
+        });
     } catch (err) {
         if (err.name === 'ValidationError') {
             return res.status(400).json({ message: 'Validation error', error: err.message });
         }
-
         res.status(500).json({ message: 'Server error', error: err.message });
     }
 };
 
 const updatePost = async (req, res) => {
     const { id } = req.params;
-    const { title, content, image } = req.body;
+    const { title, content } = req.body;
     const userId = req.session.userId;
 
     if (!userId) {
@@ -46,7 +57,10 @@ const updatePost = async (req, res) => {
 
         post.title = title || post.title;
         post.content = content || post.content;
-        post.image = image || post.image;
+
+        if (req.file) {
+            post.image = req.file.path;
+        }
 
         const updatedPost = await post.save();
         res.status(200).json({ message: 'Post updated successfully', post: updatedPost });
@@ -86,7 +100,12 @@ const getPostById = async (req, res) => {
             return res.status(404).json({ message: 'Post not found' });
         }
 
-        res.status(200).json(post);
+        const imageUrl = `${req.protocol}://${req.get('host')}/${post.image.replace(/\\/g, '/')}`;
+
+        res.status(200).json({
+            ...post.toObject(),
+            image: imageUrl,
+        });
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err.message });
     }
@@ -106,8 +125,13 @@ const getAllPosts = async (req, res) => {
 
         const totalPosts = await Post.countDocuments();
 
+        const postsWithImageUrl = posts.map((post) => ({
+            ...post.toObject(),
+            image: `${req.protocol}://${req.get('host')}/${post.image.replace(/\\/g, '/')}`,
+        }));
+
         res.status(200).json({
-            posts,
+            posts: postsWithImageUrl,
             totalPosts,
             totalPages: Math.ceil(totalPosts / limit),
             currentPage: parseInt(page),
@@ -132,8 +156,13 @@ const getPostsByUserId = async (req, res) => {
 
         const totalPosts = await Post.countDocuments({ author: userId });
 
+        const postsWithImageUrl = posts.map((post) => ({
+            ...post.toObject(),
+            image: `${req.protocol}://${req.get('host')}/${post.image.replace(/\\/g, '/')}`,
+        }));
+
         res.status(200).json({
-            posts,
+            posts: postsWithImageUrl,
             totalPosts,
             totalPages: Math.ceil(totalPosts / limit),
             currentPage: parseInt(page),
