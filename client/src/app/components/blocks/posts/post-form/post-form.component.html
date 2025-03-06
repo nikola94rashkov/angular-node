@@ -1,8 +1,11 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="post-form">
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Add image url</mat-label>
-    <input matInput formControlName="image">
-  </mat-form-field>
+  <input type="file" (change)="onFileChange($event)" accept="image/*">
+
+  @if (imagePreview) {
+    <div class="image-preview">
+      <img [src]="imagePreview" alt="Selected Image" class="preview-image">
+    </div>
+  }
 
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>title</mat-label>

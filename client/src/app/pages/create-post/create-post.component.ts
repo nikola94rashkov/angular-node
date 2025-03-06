@@ -5,7 +5,7 @@ import { SectionComponent } from '@components/hoc/section/section.component';
 import { Post } from '@models/post.model';
 import { Optional } from '@models/Util.model';
 import { PostService } from '@services/post/post.service';
-import { Subject, Subscription, takeUntil } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-post',
@@ -21,7 +21,7 @@ export class CreatePostComponent implements OnDestroy {
     private router: Router,
   ) {}
 
-  onSubmit(postFormData: Post) {
+  onSubmit(postFormData: FormData) {
     this.subscription = this.postService.createPost(postFormData).subscribe({
       next: (post) => {
         console.log('Post created:', post);

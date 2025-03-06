@@ -11,11 +11,11 @@ export class PostService {
 
   constructor(private http: HttpClient) {}
 
-  createPost(post: PostExtended): Observable<PostCreated> {
+  createPost(post: FormData): Observable<PostCreated> {
     return this.http.post<PostCreated>(this.baseUrl, post, { withCredentials: true });
   }
 
-  updatePost(id: string, post: PostExtended): Observable<PostExtended> {
+  updatePost(id: string, post: FormData): Observable<PostExtended> {
     return this.http.put<PostExtended>(`${this.baseUrl}/${id}`, post, { withCredentials: true });
   }
 

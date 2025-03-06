@@ -14,14 +14,15 @@ import { Optional } from '@models/Util.model';
 })
 export class PostFormComponent implements OnInit {
   @Input() data: Optional<Post>;
-  @Output() formSubmit = new EventEmitter<Post>();
+  @Output() formSubmit = new EventEmitter<FormData>();
 
   postForm: FormGroup;
+  selectedFile: File | null = null;
   message: string | null = null;
+  imagePreview: string | ArrayBuffer | null = null;
 
   constructor(private formBuilder: FormBuilder) {
     this.postForm = this.formBuilder.group({
-      image: ['', Validators.required],
       title: ['', Validators.required],
       content: ['', Validators.required],
     });
@@ -33,9 +34,30 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+  onFileChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imagePreview = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit() {
-    if (this.postForm.valid) {
-      this.formSubmit.emit(this.postForm.value);
+    if (this.postForm.valid && this.selectedFile) {
+      const formData = new FormData();
+
+      formData.append('image', this.selectedFile);
+      formData.append('title', this.postForm.value.title);
+      formData.append('content', this.postForm.value.content);
+
+      this.formSubmit.emit(formData);
     } else {
       console.log('Form is invalid');
     }
