@@ -3,7 +3,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { PostExtended, PostType } from '@models/post.model';
-import { Optional } from '@models/Util.model';
+import { Nullable, Optional } from '@models/utils.model';
 import { UserStateService } from '@services/user-state/user-state-service.service';
 import { Subscription } from 'rxjs';
 
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './post.component.scss',
 })
 export class PostComponent implements OnInit, OnDestroy {
-  @Input({ required: true }) post: PostExtended | null = null;
+  @Input({ required: true }) post: Nullable<PostExtended> = null;
   @Input() typeOfPost: PostType = 'post';
   isUserOwnerOfThePost = false;
   private userSubscription: Optional<Subscription>;

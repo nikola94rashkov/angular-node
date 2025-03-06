@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PostExtended } from '@models/post.model';
-import { Optional } from '@models/Util.model';
+import { Nullable, Optional } from '@models/utils.model';
 
 @Component({
   selector: 'app-post-form',
@@ -25,9 +25,9 @@ export class PostFormComponent implements OnInit, OnChanges {
   @Output() formSubmit = new EventEmitter<FormData>();
 
   postForm: FormGroup;
-  selectedFile: File | null = null;
-  message: string | null = null;
-  imagePreview: string | ArrayBuffer | null = null;
+  selectedFile: Nullable<File> = null;
+  message: Nullable<string> = null;
+  imagePreview: Nullable<string> | Nullable<ArrayBuffer> = null;
 
   constructor(private formBuilder: FormBuilder) {
     this.postForm = this.formBuilder.group({

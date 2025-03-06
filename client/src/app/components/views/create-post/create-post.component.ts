@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
-import { Optional } from '@models/Util.model';
+import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
 

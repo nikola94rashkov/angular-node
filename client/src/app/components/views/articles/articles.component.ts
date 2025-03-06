@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostComponent } from '@components/blocks/posts/post/post.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
 import { PostExtended } from '@models/post.model';
-import { Optional } from '@models/Util.model';
+import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
 

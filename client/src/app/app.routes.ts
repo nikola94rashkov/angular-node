@@ -6,19 +6,21 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('@pages/home/home.component').then((module) => module.HomeComponent),
+      import('@components/views/home/home.component').then((module) => module.HomeComponent),
   },
   {
     path: 'dashboard',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@pages/dashboard/dashboard.component').then((module) => module.DashboardComponent),
+      import('@components/views/dashboard/dashboard.component').then(
+        (module) => module.DashboardComponent,
+      ),
   },
   {
     path: 'dashboard/createPost',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@pages/create-post/create-post.component').then(
+      import('@components/views/create-post/create-post.component').then(
         (module) => module.CreatePostComponent,
       ),
   },
@@ -26,29 +28,35 @@ export const routes: Routes = [
     path: 'dashboard/editPost/:postId',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@pages/edit-post/edit-post.component').then((module) => module.EditPostComponent),
+      import('@components/views/edit-post/edit-post.component').then(
+        (module) => module.EditPostComponent,
+      ),
   },
   {
     path: 'post/:postId',
     loadComponent: () =>
-      import('@pages/articles/articles.component').then((module) => module.ArticlesComponent),
+      import('@components/views/articles/articles.component').then(
+        (module) => module.ArticlesComponent,
+      ),
   },
   {
     path: 'login',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@pages/login/login.component').then((module) => module.LoginComponent),
+      import('@components/views/login/login.component').then((module) => module.LoginComponent),
   },
   {
     path: 'register',
     canActivate: [authGuard],
     loadComponent: () =>
-      import('@pages/register/register.component').then((module) => module.RegisterComponent),
+      import('@components/views/register/register.component').then(
+        (module) => module.RegisterComponent,
+      ),
   },
   {
     path: '**',
     loadComponent: () =>
-      import('@pages/page-not-found/page-not-found.component').then(
+      import('@components/views/page-not-found/page-not-found.component').then(
         (module) => module.PageNotFoundComponent,
       ),
   },

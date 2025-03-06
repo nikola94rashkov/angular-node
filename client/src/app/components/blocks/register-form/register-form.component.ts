@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { UserResponse } from '@models/user.model';
+import { Nullable } from '@models/utils.model';
 import { AuthService } from '@services/auth/auth.service';
 
 @Component({
@@ -16,7 +17,7 @@ import { AuthService } from '@services/auth/auth.service';
 })
 export class RegisterFormComponent {
   registrationForm: FormGroup;
-  message: string | null = null;
+  message: Nullable<string> = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +32,7 @@ export class RegisterFormComponent {
     });
   }
 
-  setMessage(message: string | null): void {
+  setMessage(message: Nullable<string>): void {
     this.message = message;
   }
 

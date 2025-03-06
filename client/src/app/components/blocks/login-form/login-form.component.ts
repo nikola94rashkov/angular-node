@@ -10,6 +10,7 @@ import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatHint, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { Nullable } from '@models/utils.model';
 import { AuthService } from '@services/auth/auth.service';
 
 @Component({
@@ -29,7 +30,7 @@ import { AuthService } from '@services/auth/auth.service';
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  message: string | null = null;
+  message: Nullable<string> = null;
 
   constructor(
     private formBuilder: FormBuilder,

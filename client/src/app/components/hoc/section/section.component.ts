@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ShellComponent } from '@components/hoc/shell/shell.component';
-import { Optional } from '@models/Util.model';
+import { Optional } from '@models/utils.model';
 
 @Component({
   selector: 'app-section',

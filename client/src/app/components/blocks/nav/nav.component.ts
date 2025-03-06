@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { UserCookie } from '@models/user.model';
-import { Optional } from '@models/Util.model';
+import { Nullable, Optional } from '@models/utils.model';
 import { AuthService } from '@services/auth/auth.service';
 import { UserStateService } from '@services/user-state/user-state-service.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './nav.component.scss',
 })
 export class NavComponent implements OnInit, OnDestroy {
-  user: UserCookie | null = null;
+  user: Nullable<UserCookie> = null;
   private userSubscription: Optional<Subscription>;
 
   constructor(
