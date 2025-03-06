@@ -45,7 +45,7 @@ export class LoginFormComponent {
   onSubmit() {
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigate(['/dashboard']);
         this.loginForm.reset();
       },
       error: ({ error }) => {

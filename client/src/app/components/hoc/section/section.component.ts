@@ -10,4 +10,5 @@ import { Optional } from '@models/Util.model';
 })
 export class SectionComponent {
   @Input() title: Optional<string>;
+  @Input() className = '';
 }

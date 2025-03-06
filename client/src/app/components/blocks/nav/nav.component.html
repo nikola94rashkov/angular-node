@@ -2,7 +2,7 @@
   <ul>
     @if(user) {
       <li>
-        <a routerLink="/dashboard/createPost" routerLinkActive="active">
+        <a [routerLink]="['/dashboard/createPost']" routerLinkActive="active">
           <mat-icon>
             note_add
           </mat-icon>
@@ -10,7 +10,7 @@
       </li>
 
       <li>
-        <a routerLink="/dashboard" routerLinkActive="active">
+        <a [routerLink]="['/dashboard']" routerLinkActive="active">
           <mat-icon>
             account_circle
           </mat-icon>
@@ -27,13 +27,13 @@
 
     } @else {
       <li>
-        <a routerLink="/login" routerLinkActive="active">
+        <a [routerLink]="['/login']" routerLinkActive="active">
           <mat-icon>login</mat-icon>
         </a>
       </li>
 
       <li>
-        <a routerLink="/register" routerLinkActive="active">
+        <a [routerLink]="['/register']" routerLinkActive="active">
           <mat-icon>person_add</mat-icon>
         </a>
       </li>

@@ -1,6 +1,6 @@
-<article class="article {{isComponentSingle}}">
+<article class="article" [ngClass]="{'article--single': typeOfPost === 'post'}">
   @if(typeOfPost === 'grid') {
-    <a [routerLink]="'post/' + post?._id" role="link">{{post?.title}}</a>
+    <a [routerLink]="['post', post?._id]" role="link">{{post?.title}}</a>
   }
 
   <div class="article__image image-fit">
@@ -31,4 +31,20 @@
       <p>{{post?.content}}</p>
     }
   </div>
+
+  @if(isUserOwnerOfThePost){
+    <div class="article__actions">
+      <a [routerLink]="['/dashboard/editPost', post?._id]" class="edit">
+        <mat-icon>
+          edit
+        </mat-icon>
+      </a>
+
+      <a href="#" class="delete">
+        <mat-icon>
+          delete
+        </mat-icon>
+      </a>
+    </div>
+  }
 </article>

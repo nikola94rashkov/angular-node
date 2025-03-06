@@ -1,9 +1,17 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Post } from '@models/post.model';
+import { PostExtended } from '@models/post.model';
 import { Optional } from '@models/Util.model';
 
 @Component({
@@ -12,8 +20,8 @@ import { Optional } from '@models/Util.model';
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.scss',
 })
-export class PostFormComponent implements OnInit {
-  @Input() data: Optional<Post>;
+export class PostFormComponent implements OnInit, OnChanges {
+  @Input() data: Optional<PostExtended>;
   @Output() formSubmit = new EventEmitter<FormData>();
 
   postForm: FormGroup;
@@ -28,9 +36,13 @@ export class PostFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    if (this.data) {
-      this.postForm.patchValue(this.data);
+  ngOnInit() {
+    this.updateForm();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue) {
+      this.updateForm();
     }
   }
 
@@ -49,11 +61,27 @@ export class PostFormComponent implements OnInit {
     }
   }
 
+  updateForm() {
+    if (this.data) {
+      this.postForm.patchValue({
+        title: this.data.title,
+        content: this.data.content,
+      });
+
+      if (this.data.image) {
+        this.imagePreview = this.data.image;
+      }
+    }
+  }
+
   onSubmit() {
-    if (this.postForm.valid && this.selectedFile) {
+    if (this.postForm.valid) {
       const formData = new FormData();
 
-      formData.append('image', this.selectedFile);
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
+
       formData.append('title', this.postForm.value.title);
       formData.append('content', this.postForm.value.content);
 

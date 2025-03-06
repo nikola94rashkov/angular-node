@@ -1,22 +1,33 @@
-import { DatePipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { DatePipe, NgClass } from '@angular/common';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { PostExtended, PostType } from '@models/post.model';
+import { Optional } from '@models/Util.model';
+import { UserStateService } from '@services/user-state/user-state-service.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
-  imports: [RouterLink, DatePipe],
+  imports: [RouterLink, DatePipe, NgClass, MatIcon],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, OnDestroy {
   @Input({ required: true }) post: PostExtended | null = null;
   @Input() typeOfPost: PostType = 'post';
-  isComponentSingle = this.typeOfPost === 'post' ? 'article--single' : '';
+  isUserOwnerOfThePost = false;
+  private userSubscription: Optional<Subscription>;
+
+  constructor(private userStateService: UserStateService) {}
 
   ngOnInit(): void {
-    console.log(this.post);
+    this.userSubscription = this.userStateService.user$.subscribe(
+      (user) => (this.isUserOwnerOfThePost = user?._id === this.post?.author?._id),
+    );
+  }
 
-    console.log('post', this.post);
+  ngOnDestroy() {
+    if (this.userSubscription) this.userSubscription.unsubscribe();
   }
 }

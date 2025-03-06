@@ -24,7 +24,7 @@ export type PostsList = {
   currentPage: number;
 };
 
-export type PostCreated = {
+export type PostResponse = {
   message: string;
   post: PostExtended;
 };
