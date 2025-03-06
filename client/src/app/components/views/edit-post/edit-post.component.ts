@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
-import { PostExtended, PostResponse } from '@models/post.model';
+import { PostDetails, PostResponse } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './edit-post.component.scss',
 })
 export class EditPostComponent implements OnInit, OnDestroy {
-  postData: Optional<PostExtended>;
+  postData: Optional<PostDetails>;
   private postId: Optional<string>;
   private subscription: Optional<Subscription>;
 

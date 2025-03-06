@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostComponent } from '@components/blocks/posts/post/post.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
-import { PostExtended } from '@models/post.model';
+import { PostDetails } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
@@ -15,7 +15,7 @@ import { Subscription } from 'rxjs';
 })
 export class ArticlesComponent implements OnInit, OnDestroy {
   subscription: Optional<Subscription>;
-  post: Optional<PostExtended>;
+  post: Optional<PostDetails>;
   message: Optional<string>;
 
   constructor(

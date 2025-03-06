@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PostResponse, PostExtended, PostsList } from '@models/post.model';
+import { PostResponse, PostDetails, PostsList } from '@models/post.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -23,8 +23,8 @@ export class PostService {
     return this.http.delete(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 
-  getPostById(id: string): Observable<PostExtended> {
-    return this.http.get<PostExtended>(`${this.baseUrl}/${id}`, { withCredentials: true });
+  getPostById(id: string): Observable<PostDetails> {
+    return this.http.get<PostDetails>(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 
   getAllPosts(page = 1, limit = 10): Observable<PostsList> {

@@ -4,7 +4,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { PostListComponent } from '@components/blocks/posts/post-list/post-list.component';
 import { SectionComponent } from '@components/hoc/section/section.component';
-import { PostExtended } from '@models/post.model';
+import { PostDetails } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  posts: PostExtended[] = [];
+  posts: PostDetails[] = [];
   length = 0;
   pageSizeOptions = [10, 5];
   pageIndex = 1;

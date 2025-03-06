@@ -7,7 +7,7 @@ export type Post = {
   content: string;
 };
 
-export type PostExtended = {
+export type PostDetails = {
   _id?: string;
   title: string;
   content: string;
@@ -18,7 +18,7 @@ export type PostExtended = {
 };
 
 export type PostsList = {
-  posts: PostExtended[];
+  posts: PostDetails[];
   totalPosts: number;
   totalPages: number;
   currentPage: number;
@@ -26,7 +26,7 @@ export type PostsList = {
 
 export type PostResponse = {
   message: string;
-  post: PostExtended;
+  post: PostDetails;
 };
 
 export type PostType = 'grid' | 'post';

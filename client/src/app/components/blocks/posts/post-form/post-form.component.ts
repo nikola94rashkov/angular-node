@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { PostExtended } from '@models/post.model';
+import { PostDetails } from '@models/post.model';
 import { Nullable, Optional } from '@models/utils.model';
 
 @Component({
@@ -21,7 +21,7 @@ import { Nullable, Optional } from '@models/utils.model';
   styleUrl: './post-form.component.scss',
 })
 export class PostFormComponent implements OnInit, OnChanges {
-  @Input() data: Optional<PostExtended>;
+  @Input() data: Optional<PostDetails>;
   @Output() formSubmit = new EventEmitter<FormData>();
 
   postForm: FormGroup;
