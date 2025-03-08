@@ -1,1 +1,16 @@
-<app-section [title]="'Dashboard'"></app-section>
+<app-section [title]="'My Posts'">
+  @defer (on viewport) {
+    <app-post-list [posts]="posts"/>
+
+    @if (length > pageSize) {
+      <mat-divider class="spacing-top-20"/>
+
+      <mat-paginator [length]="length" (page)="onPageChange($event)"  [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+      </mat-paginator>
+    }
+  } @placeholder {
+    <p>Loading posts...</p>
+  } @loading {
+    <mat-spinner/>
+  }
+</app-section>

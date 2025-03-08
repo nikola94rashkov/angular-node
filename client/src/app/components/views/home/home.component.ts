@@ -19,10 +19,10 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
   posts: PostDetails[] = [];
   length = 0;
-  pageSizeOptions = [10, 5];
+  pageSizeOptions = [8, 12];
   pageIndex = 1;
   previousPageIndex: Optional<number>;
-  pageSize = 10;
+  pageSize = 12;
   totalPages = 0;
 
   private subscription: Optional<Subscription>;
@@ -43,10 +43,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     const { pageIndex, previousPageIndex, pageSize } = event;
     this.previousPageIndex = previousPageIndex;
     this.pageSize = pageSize;
-    this.pageIndex = pageIndex;
+    this.pageIndex = pageIndex + 1;
 
-    this.getPostData(pageIndex, pageSize);
-    console.log('length <= pageSize', this.length <= this.pageSize);
+    this.getPostData(this.pageIndex, this.pageSize);
   }
 
   getPostData(page: number, limit: number) {

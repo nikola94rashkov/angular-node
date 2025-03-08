@@ -5,7 +5,8 @@
     @if (length > pageSize) {
       <mat-divider class="spacing-top-20"/>
 
-      <mat-paginator [length]="length" (page)="onPageChange($event)"  [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+      <mat-paginator [length]="length" (page)="onPageChange($event)" [pageSizeOptions]="pageSizeOptions"
+                     aria-label="Select page">
       </mat-paginator>
     }
   } @placeholder {
@@ -14,3 +15,5 @@
     <mat-spinner/>
   }
 </app-section>
+
+
