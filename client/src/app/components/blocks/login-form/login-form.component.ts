@@ -15,16 +15,7 @@ import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
-  imports: [
-    FormsModule,
-    MatButton,
-    ReactiveFormsModule,
-    MatFormField,
-    MatError,
-    MatInput,
-    MatLabel,
-    MatHint,
-  ],
+  standalone: false,
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',
 })

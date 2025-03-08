@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserResponse } from '@models/user.model';
 import { Nullable } from '@models/utils.model';
@@ -10,8 +7,7 @@ import { AuthService } from '@services/auth/auth.service';
 
 @Component({
   selector: 'app-register-form',
-  standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  standalone: false,
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
 })

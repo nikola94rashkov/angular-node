@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PostComponent } from '@components/blocks/posts/post/post.component';
-import { SectionComponent } from '@components/hoc/section/section.component';
 import { PostDetails } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
@@ -9,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-articles',
-  imports: [SectionComponent, PostComponent],
+  standalone: false,
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.scss',
 })

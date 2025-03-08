@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-shell',
-  imports: [],
+  standalone: false,
   templateUrl: './shell.component.html',
-  styleUrl: './shell.component.scss'
+  styleUrl: './shell.component.scss',
 })
-export class ShellComponent {
-
-}
+export class ShellComponent {}

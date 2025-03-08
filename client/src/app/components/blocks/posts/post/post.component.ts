@@ -1,8 +1,6 @@
-import { DatePipe, NgClass } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatIcon } from '@angular/material/icon';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { DialogComponent } from '@components/blocks/dialog/dialog.component';
 import { PostDetails, PostType } from '@models/post.model';
 import { Nullable, Optional } from '@models/utils.model';
@@ -12,7 +10,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post',
-  imports: [RouterLink, DatePipe, NgClass, MatIcon],
+  standalone: false,
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
 })

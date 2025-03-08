@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
-import { SectionComponent } from '@components/hoc/section/section.component';
 import { PostDetails, PostResponse } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
@@ -9,7 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-post',
-  imports: [SectionComponent, PostFormComponent],
+  standalone: false,
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.scss',
 })

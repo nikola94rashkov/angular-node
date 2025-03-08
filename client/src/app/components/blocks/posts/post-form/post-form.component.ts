@@ -8,16 +8,13 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PostDetails } from '@models/post.model';
 import { Nullable, Optional } from '@models/utils.model';
 
 @Component({
   selector: 'app-post-form',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  standalone: false,
   templateUrl: './post-form.component.html',
   styleUrl: './post-form.component.scss',
 })

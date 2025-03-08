@@ -1,9 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDivider } from '@angular/material/divider';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { PostListComponent } from '@components/blocks/posts/post-list/post-list.component';
-import { SectionComponent } from '@components/hoc/section/section.component';
+import { PageEvent } from '@angular/material/paginator';
 import { PostDetails } from '@models/post.model';
 import { UserCookie } from '@models/user.model';
 import { Nullable, Optional } from '@models/utils.model';
@@ -13,7 +9,7 @@ import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [SectionComponent, MatDivider, MatPaginator, MatProgressSpinner, PostListComponent],
+  standalone: false,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
 })

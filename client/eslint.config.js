@@ -3,7 +3,7 @@ const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const importPlugin = require('eslint-plugin-import');
-const unusedImportsPlugin = require('eslint-plugin-unused-imports'); // Add this line
+const unusedImportsPlugin = require('eslint-plugin-unused-imports');
 
 module.exports = tseslint.config(
   {
@@ -16,7 +16,7 @@ module.exports = tseslint.config(
     ],
     plugins: {
       import: importPlugin,
-      'unused-imports': unusedImportsPlugin, // Add this line
+      'unused-imports': unusedImportsPlugin,
     },
     processor: angular.processInlineTemplates,
     rules: {
@@ -72,7 +72,7 @@ module.exports = tseslint.config(
               position: 'after',
             },
           ],
-          'newlines-between': 'always', // Enforce a blank line between import groups
+          'newlines-between': 'always',
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
@@ -80,14 +80,21 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
-      'import/no-unused-modules': 'error', // Report unused imports
-      '@typescript-eslint/no-unused-vars': 'error', // Report unused variables
-      'unused-imports/no-unused-imports': 'error', // Automatically remove unused imports
+      'import/no-unused-modules': 'error',
+      '@typescript-eslint/no-unused-vars': 'error',
+      'unused-imports/no-unused-imports': 'error',
     },
   },
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
     rules: {},
+  },
+  {
+    files: ['**/*.component.ts'],
+    rules: {
+      'unused-imports/no-unused-imports': 'off',
+      '@angular-eslint/prefer-standalone': 'off',
+    },
   },
 );

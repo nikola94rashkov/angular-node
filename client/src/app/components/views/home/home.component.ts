@@ -1,9 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDivider } from '@angular/material/divider';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { PostListComponent } from '@components/blocks/posts/post-list/post-list.component';
-import { SectionComponent } from '@components/hoc/section/section.component';
+import { PageEvent } from '@angular/material/paginator';
 import { PostDetails } from '@models/post.model';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
@@ -11,8 +7,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [SectionComponent, PostListComponent, MatPaginator, MatDivider, MatProgressSpinner],
+  standalone: false,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
@@ -39,8 +34,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  onPageChange(event: PageEvent) {
-    const { pageIndex, previousPageIndex, pageSize } = event;
+  onPageChange($event: PageEvent) {
+    const { pageIndex, previousPageIndex, pageSize } = $event;
     this.previousPageIndex = previousPageIndex;
     this.pageSize = pageSize;
     this.pageIndex = pageIndex + 1;

@@ -1,14 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
-import { SectionComponent } from '@components/hoc/section/section.component';
 import { Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-post',
-  imports: [SectionComponent, PostFormComponent],
+  standalone: false,
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.scss',
 })
