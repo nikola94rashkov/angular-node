@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -29,7 +30,10 @@ export class PostFormComponent implements OnInit, OnChanges {
   message: Nullable<string> = null;
   imagePreview: Nullable<string> | Nullable<ArrayBuffer> = null;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private location: Location,
+  ) {
     this.postForm = this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -89,5 +93,10 @@ export class PostFormComponent implements OnInit, OnChanges {
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  cancelEdit($event: Event): void {
+    $event.preventDefault();
+    this.location.back();
   }
 }

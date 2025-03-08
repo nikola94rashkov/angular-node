@@ -67,6 +67,15 @@
     }
   }
 
+  .cancel {
+    background-color: var(--mat-sys-outline-variant);
+
+    &:hover {
+      background-color: var(--mat-sys-on-tertiary-fixed-variant);
+      opacity: .8;
+    }
+  }
+
   &:not(&--single) {
     .article__actions {
       display: none;
