@@ -49,7 +49,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       this.subscription = this.postService.updatePost(this.postId, postFormData).subscribe({
         next: (data: PostResponse) => {
           const { post } = data;
-          this.router.navigate(['/dashboard/editPost', post._id]);
+          this.router.navigate(['post/', post._id]);
         },
         error: (error) => {
           console.error('Error creating post:', error);

@@ -37,6 +37,6 @@ export class ArticlesComponent implements OnInit, OnDestroy {
     }
   }
   ngOnDestroy() {
-    console.log('destroyed');
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }
