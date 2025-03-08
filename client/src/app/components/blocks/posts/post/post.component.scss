@@ -78,4 +78,12 @@
       padding-bottom: 35%;
     }
   }
+
+  &--card {
+    h3 {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
 }

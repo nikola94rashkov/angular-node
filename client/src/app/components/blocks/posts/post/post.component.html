@@ -1,4 +1,4 @@
-<article class="article" [ngClass]="{'article--single': typeOfPost === 'post'}">
+<article class="article" [ngClass]="{'article--single': typeOfPost === 'post', 'article--card': typeOfPost=== 'grid'}">
   @if(typeOfPost === 'grid') {
     <a [routerLink]="['post', post?._id]" role="link">{{post?.title}}</a>
   }
