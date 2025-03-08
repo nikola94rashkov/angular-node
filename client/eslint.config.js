@@ -3,6 +3,7 @@ const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const importPlugin = require('eslint-plugin-import');
+const unusedImportsPlugin = require('eslint-plugin-unused-imports'); // Add this line
 
 module.exports = tseslint.config(
   {
@@ -15,6 +16,7 @@ module.exports = tseslint.config(
     ],
     plugins: {
       import: importPlugin,
+      'unused-imports': unusedImportsPlugin, // Add this line
     },
     processor: angular.processInlineTemplates,
     rules: {
@@ -65,17 +67,12 @@ module.exports = tseslint.config(
               position: 'after',
             },
             {
-              pattern: '@pages/**',
-              group: 'internal',
-              position: 'after',
-            },
-            {
               pattern: '@routes/**',
               group: 'internal',
               position: 'after',
             },
           ],
-          'newlines-between': 'always',
+          'newlines-between': 'always', // Enforce a blank line between import groups
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
@@ -83,6 +80,9 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      'import/no-unused-modules': 'error', // Report unused imports
+      '@typescript-eslint/no-unused-vars': 'error', // Report unused variables
+      'unused-imports/no-unused-imports': 'error', // Automatically remove unused imports
     },
   },
   {

@@ -19,8 +19,8 @@ export class PostService {
     return this.http.put<PostResponse>(`${this.baseUrl}/${id}`, post, { withCredentials: true });
   }
 
-  deletePost(id: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { withCredentials: true });
+  deletePost(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 
   getPostById(id: string): Observable<PostDetails> {
