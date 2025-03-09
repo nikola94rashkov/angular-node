@@ -4,8 +4,8 @@ import { MatDivider } from '@angular/material/divider';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
-import { PostsModule } from '@components/blocks/posts/posts.module';
 import { HocModule } from '@components/hoc/hoc.module';
+import { PostsModule } from '@components/posts/posts.module';
 import { HomeComponent } from '@components/views/home/home.component';
 
 @NgModule({

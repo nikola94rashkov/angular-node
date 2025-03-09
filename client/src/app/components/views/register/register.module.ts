@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BlocksModule } from '@components/blocks/blocks.module';
 import { HocModule } from '@components/hoc/hoc.module';
+import { SharedModule } from '@components/shared/shared.module';
 import { RegisterComponent } from '@components/views/register/register.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { RegisterComponent } from '@components/views/register/register.component
   imports: [
     CommonModule,
     HocModule,
-    BlocksModule,
+    SharedModule,
     RouterModule.forChild([{ path: '', component: RegisterComponent }]),
   ],
   exports: [RegisterComponent],

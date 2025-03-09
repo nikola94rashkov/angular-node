@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterOutlet } from '@angular/router';
-import { BlocksModule } from '@components/blocks/blocks.module';
-import { PostsModule } from '@components/blocks/posts/posts.module';
 import { HocModule } from '@components/hoc/hoc.module';
+import { PostsModule } from '@components/posts/posts.module';
+import { SharedModule } from '@components/shared/shared.module';
 import { ArticlesModule } from '@components/views/articles/articles.module';
 import { CreatePostModule } from '@components/views/create-post/create-post.module';
 import { DashboardModule } from '@components/views/dashboard/dashboard.module';
@@ -39,7 +39,7 @@ import { AppComponent } from './app.component';
     RouterOutlet,
     HocModule,
     PostsModule,
-    BlocksModule,
+    SharedModule,
   ],
 })
 export class AppModule {}

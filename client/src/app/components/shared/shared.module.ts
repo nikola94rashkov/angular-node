@@ -7,15 +7,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { DialogComponent } from '@components/blocks/dialog/dialog.component';
-import { FooterComponent } from '@components/blocks/footer/footer.component';
-import { HeaderComponent } from '@components/blocks/header/header.component';
-import { LoginFormComponent } from '@components/blocks/login-form/login-form.component';
-import { LogoComponent } from '@components/blocks/logo/logo.component';
-import { NavComponent } from '@components/blocks/nav/nav.component';
-import { PostsModule } from '@components/blocks/posts/posts.module';
-import { RegisterFormComponent } from '@components/blocks/register-form/register-form.component';
 import { HocModule } from '@components/hoc/hoc.module';
+import { PostsModule } from '@components/posts/posts.module';
+import { DialogComponent } from '@components/shared/dialog/dialog.component';
+import { FooterComponent } from '@components/shared/footer/footer.component';
+import { HeaderComponent } from '@components/shared/header/header.component';
+import { LoginFormComponent } from '@components/shared/login-form/login-form.component';
+import { LogoComponent } from '@components/shared/logo/logo.component';
+import { NavComponent } from '@components/shared/nav/nav.component';
+import { RegisterFormComponent } from '@components/shared/register-form/register-form.component';
 
 @NgModule({
   declarations: [
@@ -50,4 +50,4 @@ import { HocModule } from '@components/hoc/hoc.module';
     HeaderComponent,
   ],
 })
-export class BlocksModule {}
+export class SharedModule {}

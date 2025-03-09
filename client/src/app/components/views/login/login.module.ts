@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BlocksModule } from '@components/blocks/blocks.module';
 import { HocModule } from '@components/hoc/hoc.module';
+import { SharedModule } from '@components/shared/shared.module';
 import { LoginComponent } from '@components/views/login/login.component';
 
 @NgModule({
@@ -10,7 +10,7 @@ import { LoginComponent } from '@components/views/login/login.component';
   imports: [
     CommonModule,
     HocModule,
-    BlocksModule,
+    SharedModule,
     RouterModule.forChild([{ path: '', component: LoginComponent }]),
   ],
   exports: [LoginComponent],

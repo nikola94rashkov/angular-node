@@ -6,9 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { RouterModule } from '@angular/router';
-import { PostComponent } from '@components/blocks/posts/post/post.component';
-import { PostFormComponent } from '@components/blocks/posts/post-form/post-form.component';
-import { PostListComponent } from '@components/blocks/posts/post-list/post-list.component';
+import { PostComponent } from '@components/posts/post/post.component';
+import { PostFormComponent } from '@components/posts/post-form/post-form.component';
+import { PostListComponent } from '@components/posts/post-list/post-list.component';
 
 @NgModule({
   declarations: [PostComponent, PostFormComponent, PostListComponent],

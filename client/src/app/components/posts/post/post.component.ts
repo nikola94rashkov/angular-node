@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogComponent } from '@components/blocks/dialog/dialog.component';
+import { DialogComponent } from '@components/shared/dialog/dialog.component';
 import { PostDetails, PostType } from '@models/post.model';
 import { Nullable, Optional } from '@models/utils.model';
 import { PostService } from '@services/post/post.service';
